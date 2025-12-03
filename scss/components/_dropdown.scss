@@ -1,12 +1,20 @@
+@use "../abstracts";
+
 .dropdown {
   position: absolute;
   left: 0;
+  width: min(1240px, 100%);
   padding-top: 54px;
   display: none;
 
   &__inner {
+    --inner-padding: 30px;
+
     position: relative;
-    padding: 30px;
+
+    max-height: min(582px, 100vh - 158px);
+    padding: var(--inner-padding);
+
     border-radius: 20px;
     background: var(--dropdown-bg-color);
     box-shadow: 0 40px 90px 20px var(--dropdown-shadow-color);
@@ -19,5 +27,115 @@
       transform: translateX(-50%);
       filter: var(--dropdown-arrow-color);
     }
+  }
+}
+
+.top-menu {
+  --top-menu-width: 292px;
+  --inner-max-height: calc(
+    min(582px, 100vh - 158px) - var(--inner-padding) * 2
+  );
+  position: relative;
+  gap: 77px;
+  height: var(--inner-max-height);
+
+  &__main {
+    width: var(--top-menu-width);
+    // 100vh là ccao của khung hình.
+    // 158px (là lấy 134px (tính từ đầu trang xuống dropdown) + 24px (cách phần dưới 1 đoạn bằng từ header xuống dropdown (cho đẹp mắt)))
+    height: inherit;
+    border-right: 1px solid var(--top-menu-border-color);
+    overflow-y: auto;
+  }
+}
+
+.menu-column {
+  display: flex;
+  gap: 14px;
+
+  &__icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+
+    @include abstracts.breakpoint(xl) {
+      display: none;
+    }
+
+    &-1 {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+    }
+
+    &-2 {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 24px;
+      height: 24px;
+      object-fit: cover;
+      filter: var(--menu-column-icon-color);
+    }
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__heading {
+    margin-top: 6px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--menu-column-text-color);
+  }
+
+  &__list {
+    margin-top: 19px;
+  }
+
+  &__item {
+    &--active > .menu-column__link,
+    &:hover > .menu-column__link {
+      color: #0071dc;
+      font-weight: 500;
+    }
+
+    &--active .sub-menu {
+      display: grid;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 7px 0;
+    font-size: 1.4rem;
+    line-height: 1.43;
+    color: var(--menu-column-text-color);
+  }
+
+  & + & {
+    margin-top: calc(var(--inner-padding) - 7px);
+  }
+}
+
+.sub-menu {
+  position: absolute;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--inner-padding);
+  inset: 0 0 0 var(--top-menu-width);
+  padding-left: var(--inner-padding);
+  display: none;
+  overflow-y: auto;
+
+  &-not-main {
+    height: var(--inner-max-height);
+    position: initial;
+    inset: initial;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding-left: 0;
   }
 }
