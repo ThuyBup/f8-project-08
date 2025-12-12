@@ -30,6 +30,10 @@
       box-shadow: none;
     }
 
+    @include abstracts.breakpoint(sm) {
+      padding: 3px 20px 10px;
+    }
+
     &::before {
       content: url(../icons/dropdown-arrow.svg);
       position: absolute;

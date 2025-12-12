@@ -1223,6 +1223,7 @@ html {
   --dropdown-bg-color: #fff;
   --dropdown-shadow-color: rgba(200, 200, 200, 0.4);
   --top-menu-border-color: #d2d1d6;
+  --navbar-shadow-color: rgba(200, 200, 200, 0.4);
 }
 
 html.dark {
@@ -1248,6 +1249,7 @@ html.dark {
   --menu-column-icon-color: brightness(0) saturate(100%) invert(100%) sepia(2%)
     saturate(3031%) hue-rotate(269deg) brightness(100%) contrast(97%);
   --menu-column-text-color: #b9babe;
+  --navbar-shadow-color: rgba(23, 28, 40, 0.4);
 }
 
 .top-act__btn, .top-act__group, .top-act, .navbar__link, .navbar__list, .top-bar {
@@ -1306,18 +1308,26 @@ html.dark {
   .navbar {
     position: fixed;
     z-index: 9;
-    margin-left: 0;
     inset: 0 50% 0 0;
+    margin-left: 0;
+    padding: 20px 0;
+    border-radius: 0 20px 20px 0;
     background: var(--dropdown-bg-color);
     translate: -100%;
     transition: translate 0.5s;
   }
   .navbar.show {
     translate: 0;
+    box-shadow: 0 40px 90px 20px var(--navbar-shadow-color);
   }
   .navbar.show ~ .navbar__overlay {
     visibility: visible;
     opacity: 1;
+  }
+}
+@media (max-width: 575.98px) {
+  .navbar {
+    inset: 0 20% 0 0;
   }
 }
 .navbar__close-btn {
@@ -1327,6 +1337,11 @@ html.dark {
   .navbar__close-btn {
     display: block;
     padding: 20px 40px 10px;
+  }
+}
+@media (max-width: 575.98px) {
+  .navbar__close-btn {
+    padding: 0 20px 10px;
   }
 }
 .navbar__overlay {
@@ -1348,6 +1363,7 @@ html.dark {
     flex-direction: column;
     align-items: flex-start;
     overflow: auto;
+    overscroll-behavior: contain;
     height: calc(100% - 100px);
   }
 }
@@ -1384,9 +1400,41 @@ html.dark {
     justify-content: space-between;
   }
 }
+@media (max-width: 575.98px) {
+  .navbar__link {
+    height: 44px;
+    padding: 10px 20px;
+  }
+}
 @media (max-width: 991.98px) {
   .navbar__arrow {
     rotate: -90deg;
+  }
+}
+.navbar-btn {
+  display: none;
+}
+@media (max-width: 767.98px) {
+  .navbar-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 40px;
+  }
+  .navbar-btn__title, .navbar-btn__qty {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.47;
+  }
+  .navbar-btn__title {
+    margin-left: 15px;
+  }
+  .navbar-btn__qty {
+    margin-left: auto;
+  }
+}
+@media (max-width: 575.98px) {
+  .navbar-btn {
+    padding: 10px 20px;
   }
 }
 
@@ -1508,6 +1556,11 @@ html.dark {
     border-radius: 0;
     background: transparent;
     box-shadow: none;
+  }
+}
+@media (max-width: 575.98px) {
+  .dropdown__inner {
+    padding: 3px 20px 10px;
   }
 }
 .dropdown__inner::before {
