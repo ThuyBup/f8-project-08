@@ -23,4 +23,14 @@ html {
 
   // Navbar
   --navbar-shadow-color: rgba(200, 200, 200, 0.4);
+
+  // Home page
+  --cate-item-bg: #eee;
+  --cate-item-thumb-bg: #fff;
+  --cate-item-title-color: #000;
+
+  @include abstracts.screen(md) {
+    --cate-item-bg: #fff;
+    --cate-item-title-color: #1a162e;
+  }
 }

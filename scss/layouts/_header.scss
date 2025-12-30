@@ -11,6 +11,12 @@
   @include abstracts.screen(lg) {
     box-shadow: 0 20px 60px 10px var(--header-shadow-color);
   }
+
+  .container {
+    @include abstracts.screen(sm) {
+      --grid-gutter-x: 40px;
+    }
+  }
 }
 
 .top-bar {

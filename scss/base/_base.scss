@@ -1,3 +1,5 @@
+@use "../abstracts";
+
 *,
 ::before,
 ::after {
@@ -36,4 +38,10 @@ textarea {
 
 .icon {
   filter: var(--icon-color);
+}
+
+.container {
+  @include abstracts.screen(sm) {
+    --grid-gutter-x: 40px;
+  }
 }
