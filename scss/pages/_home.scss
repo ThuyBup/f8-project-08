@@ -15,6 +15,10 @@
     font-size: 2.4rem;
     font-weight: 700;
     line-height: 1.42;
+
+    @include abstracts.screen(md) {
+      font-size: 2.2rem;
+    }
   }
 
   &__cate {
@@ -30,6 +34,10 @@
   }
 
   &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     margin-bottom: 20px;
   }
 }
